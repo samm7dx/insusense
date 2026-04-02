@@ -56,6 +56,10 @@ bash setup.sh
 streamlit run app.py
 ```
 
+
+Live URL: https://insusense.onrender.com
+
+
 ## Deploy on Render
 
 This repo includes a `Dockerfile` + `render.yaml` for one-click Render deploy.
