@@ -54,7 +54,7 @@ def _advice_for(pred_label: str) -> str:
 
 def main() -> None:
     st.set_page_config(page_title="InsuSense", page_icon="🩸", layout="centered")
-    st.title("InsuSense — Glucose Spike Predictor")
+    st.title("InsuSense — Glucose Spike Predictor(UI Test)")
     st.caption("Predicts glucose spike class from meal macros (Low / Medium / High).")
 
     repo_root = Path(__file__).resolve().parent
