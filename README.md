@@ -56,6 +56,15 @@ bash setup.sh
 streamlit run app.py
 ```
 
+## Deploy on Render
+
+This repo includes a `Dockerfile` + `render.yaml` for one-click Render deploy.
+
+1. Push the repo to GitHub (already done for `samm7dx/insusense`).
+2. In Render, create a **New Web Service** and connect the GitHub repo.
+3. Render will detect the Docker setup automatically.
+4. Deploy. Render sets `$PORT`; the container runs Streamlit on that port.
+
 ## Notes for collaborators
 
 - **Feature engineering must remain identical** across `train_model.py` and `app.py`.
