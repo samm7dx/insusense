@@ -144,6 +144,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# InsuSense artifacts
+*.pkl
+
 # Spyder project settings
 .spyderproject
 .spyproject
