@@ -1,86 +1,141 @@
-# InsuSense
+🩺 InsuSense
+Personalized Glucose Spike Prediction using Machine Learning
 
-InsuSense is a collaborative ML project that predicts **glucose spike risk** from meal macros and classifies it into **Low / Medium / High** using:
-- Inputs: `carbs`, `sugar`, `fiber`, `protein`, `fat`
-- Feature engineering: `net_carbs = carbs - fiber`
-- Model: `RandomForestClassifier` + `StandardScaler`
+InsuSense is a machine learning-powered web application that predicts post-meal glucose spike risk based on food macronutrients and provides visual insights + actionable dietary suggestions.
 
-## Project structure
+🚀 Live Demo
 
-```
+👉 https://insusense.onrender.com
+
+📌 Overview
+
+Understanding how food impacts blood glucose is critical for preventing lifestyle diseases like diabetes. However, most people lack access to continuous glucose monitoring or actionable insights.
+
+InsuSense solves this by:
+
+Predicting glucose spike risk (Low / Medium / High)
+Generating a glucose response curve
+Providing smart suggestions to improve meals
+Offering an interactive UI for real-time analysis
+🧠 Features
+
+✔️ Predict glucose spike risk
+✔️ Visual glucose response curve (0–120 mins)
+✔️ Personalized dietary suggestions
+✔️ User profile influence (weight, body fat, age)
+✔️ Preset + custom meal input
+✔️ Clean interactive UI (Streamlit)
+✔️ Cloud deployed
+
+⚙️ Tech Stack
+Language: Python
+ML: Scikit-learn (RandomForestClassifier)
+Data: Pandas, NumPy
+Visualization: Matplotlib
+Frontend: Streamlit
+Deployment: Render
+Containerization: Docker
+🧪 How It Works
+🔹 Input
+
+User enters:
+
+Carbs
+Sugar
+Fiber
+Protein
+Fat
+🔹 Feature Engineering
+net_carbs = carbs - fiber
+🔹 Prediction Pipeline
+Feature engineering
+Data scaling (StandardScaler)
+Model prediction (Random Forest)
+Risk classification
+🔹 Output
+📊 Risk Level (Low / Medium / High)
+📈 Glucose Curve
+💡 Suggestions
+📊 Model Details
+Algorithm: RandomForestClassifier
+
+Features:
+
+carbs, sugar, fiber, protein, fat, net_carbs
+Training:
+Synthetic + processed dataset
+Balanced class generation
+Evaluation:
+Classification report
+Accuracy metrics
+📈 Sample Output
+Meal	Net Carbs	Prediction
+White Rice	High	High Risk
+Salad	Low	Low Risk
+Protein Meal	Medium	Moderate
+📁 Project Structure
 insusense/
 │
-├── app.py
-├── train_model.py
+├── app.py               # Streamlit UI + prediction
+├── train_model.py       # Model training pipeline
+├── setup.sh             # Setup automation
 ├── requirements.txt
-├── setup.sh
-├── README.md
-├── .gitignore
+├── Dockerfile
+├── render.yaml
+│
 ├── data/
 │   └── data.csv
+│
 └── model/
     ├── model.pkl
     └── scaler.pkl
-```
-
-## Team roles
-
-- **Samridh (ML + Data + Setup)**: dataset, feature engineering, model training, `train_model.py`
-- **Satwik (Backend + Frontend)**: Streamlit UI + prediction pipeline, `app.py`
-- **Surya (API + DevOps + Cloud)**: GitHub/deployment setup, `setup.sh`, `README.md`
-
-## Setup
-
-1. Create and activate a virtual environment (recommended).
-2. Install dependencies:
-
-```bash
+⚙️ Installation
+git clone https://github.com/samm7dx/insusense.git
+cd insusense
+python -m venv venv
+source venv/Scripts/activate   # Windows
 pip install -r requirements.txt
-```
+▶️ Run Locally
+python -m streamlit run app.py
 
-3. Train the model (creates `model/model.pkl` and `model/scaler.pkl`):
+Open:
 
-```bash
-python train_model.py
-```
+http://localhost:8501
+🌐 Deployment
+Hosted on Render
+Uses Docker container
+Automatically builds and runs via setup.sh
+👥 Team
+🔹 Samridh Raj (ML + Data + Setup)
+Dataset preparation
+Feature engineering
+Model training
+train_model.py
+🔹 Satwik Raj (Backend + Frontend)
+Streamlit UI
+Prediction pipeline
+Visualization
+app.py
+🔹 Surya Gautam (DevOps + Deployment)
+GitHub setup
+Docker + deployment
+Automation scripts
+setup.sh, README.md
+⚠️ Disclaimer
 
-Or via setup script:
+This project is intended for educational purposes only.
+It is not a medical tool and should not be used for diagnosis.
 
-```bash
-bash setup.sh
-```
+🚀 Future Improvements
+Real CGM dataset integration
+Regression-based glucose prediction
+Mobile app version
+User history tracking
+API backend (FastAPI)
+⭐ Contribute
 
-## Run the app
+Pull requests are welcome. For major changes, open an issue first.
 
-```bash
-streamlit run app.py
-```
+📌 Key Insight
 
-
-Live URL: https://insusense.onrender.com
-
-
-## Deploy on Render
-
-This repo includes a `Dockerfile` + `render.yaml` for one-click Render deploy.
-
-1. Push the repo to GitHub (already done for `samm7dx/insusense`).
-2. In Render, create a **New Web Service** and connect the GitHub repo.
-3. Render will detect the Docker setup automatically.
-4. Deploy. Render sets `$PORT`; the container runs Streamlit on that port.
-
-## Notes for collaborators
-
-- **Feature engineering must remain identical** across `train_model.py` and `app.py`.
-- **Feature order must not change**:
-  `["carbs","sugar","fiber","protein","fat","net_carbs"]`
-
-## Using the Indian food dataset
-
-If you have `Indian_Food_Nutrition_Processed.csv`, place it at:
-- `data/raw_indian_food.csv`
-
-`train_model.py` will automatically:
-- Map columns (`Carbohydrates (g)`, `Free Sugar (g)`, `Fibre (g)`, `Protein (g)`, `Fats (g)`)
-- Rebuild a **balanced** canonical `data/data.csv` (without labels)
-- Derive labels during training using the spike-score rule
+Food composition directly influences glucose response — InsuSense translates that into actionable intelligence.
